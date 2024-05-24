@@ -7,15 +7,17 @@ class ToDo {
 
   final  int? id;
 
+  @JsonKey(name: 'user_id')
   final  int? userId;
 
   final  String? title;
 
+  @JsonKey(name: 'due_on')
   final  String? dueOn;
 
   final  String? status;
 
-  ToDo({@JsonKey(name: 'id') this.id, @JsonKey(name: 'user_id') this.userId, @JsonKey(name: 'title') this.title, @JsonKey(name: 'due_on') this.dueOn, @JsonKey(name: 'status') this.status});
+  ToDo({this.id, this.userId, this.title, this.dueOn, this.status});
 
    factory ToDo.fromJson(Map<String, dynamic> json) => _$ToDoFromJson(json);
 

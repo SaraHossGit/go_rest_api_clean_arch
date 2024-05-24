@@ -6,6 +6,7 @@ part 'comment.g.dart';
 class Comment {
   final int? id;
 
+  @JsonKey(name: 'post_id')
   final int? postId;
 
   final String? name;
@@ -15,11 +16,11 @@ class Comment {
   final String? body;
 
   Comment(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'post_id') this.postId,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'body') this.body});
+      {this.id,
+      this.postId,
+      this.name,
+      this.email,
+      this.body});
 
   factory Comment.fromJson(Map<String, dynamic> json) =>
       _$CommentFromJson(json);
