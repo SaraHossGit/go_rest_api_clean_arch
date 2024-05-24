@@ -27,7 +27,8 @@ abstract class WebServices {
   @POST('users')
   Future<User> createUser(@Body() Map<String,dynamic> user);
 
-  //26efee9d0a8345a05b1047f20d1ba49b897364f037ede22611357091ab5eacd2
+  @GET('users/{id}')
+  Future<HttpResponse> deleteUser(@Path() int id);
 
   @GET('todos')
   Future<List<ToDo>> getToDos();

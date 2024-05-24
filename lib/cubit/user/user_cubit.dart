@@ -19,4 +19,8 @@ class UserCubit extends Cubit<UserStates>{
   void createUser({required User user}){
     userRepo.createUser(userData: user.toJson()).then((user) => emit(UserCreated(user)));
   }
+
+  void deleteUser({required int userId}){
+    userRepo.deleteUser(userId: userId).then((data) => emit(UserDeleted(data)));
+  }
 }

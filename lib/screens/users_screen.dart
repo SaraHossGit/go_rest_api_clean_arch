@@ -21,7 +21,7 @@ class UsersScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => getIt<UserCubit>()..createUser(user: user2),
+          create: (context) => getIt<UserCubit>()..deleteUser(userId: 6925958),
           child: BlocConsumer<UserCubit, UserStates>(
               listener: (context, state) {},
               builder: (context, state) {
@@ -41,6 +41,9 @@ class UsersScreen extends StatelessWidget {
                 else if (state is UserCreated) {
                   user = state.user;
                   return Text(user.name.toString());
+                }
+                else if (state is UserDeleted) {
+                  return Text(state.data.toString());
                 }
                 return const CircularProgressIndicator();
               }),

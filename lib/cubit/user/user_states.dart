@@ -18,3 +18,8 @@ class UserCreated extends UserStates{
   final User user;
   UserCreated (this.user);
 }
+
+class UserDeleted extends UserStates{
+  final data;
+  UserDeleted (this.data);
+}
