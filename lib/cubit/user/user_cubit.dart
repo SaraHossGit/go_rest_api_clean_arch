@@ -8,6 +8,10 @@ class UserCubit extends Cubit<UserStates>{
       : super(InitialState());
 
   void getUsers(){
-    userRepo.getUsers().then((usersList) => emit(DataLoaded(usersList)));
+    userRepo.getUsers().then((usersList) => emit(UsersLoaded(usersList)));
+  }
+
+  void getSingleUser({required int userId}){
+    userRepo.getSingleUser(userId: userId).then((user) => emit(SingleUserLoaded(user)));
   }
 }

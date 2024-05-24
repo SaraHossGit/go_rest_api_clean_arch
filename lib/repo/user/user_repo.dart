@@ -10,4 +10,9 @@ class UserRepo{
     return response;
   }
 
+  Future<User> getSingleUser({required int userId}) async {
+    final response= await webServices.getSingleUser(userId);
+    return response;
+  }
+
 }

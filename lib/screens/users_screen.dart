@@ -11,23 +11,30 @@ class UsersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<User> usersList = [];
+    User user;
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => getIt<UserCubit>()..getUsers(),
-        child: BlocConsumer<UserCubit, UserStates>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              if (state is DataLoaded) {
-                usersList = state.usersList;
-                return ListView.separated(
-                    itemBuilder: (context, index) =>
-                        Text(usersList[index].id.toString()),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 10),
-                    itemCount: usersList.length);
-              }
-              return const SizedBox();
-            }),
+      body: SafeArea(
+        child: BlocProvider(
+          create: (context) => getIt<UserCubit>()..getSingleUser(userId: 6925955),
+          child: BlocConsumer<UserCubit, UserStates>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                if (state is UsersLoaded) {
+                  usersList = state.usersList;
+                  return ListView.separated(
+                      itemBuilder: (context, index) =>
+                          Text(usersList[index].id.toString()),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 10),
+                      itemCount: usersList.length);
+                }
+                else if (state is SingleUserLoaded) {
+                  user = state.user;
+                  return Text(user.name.toString());
+                }
+                return const SizedBox();
+              }),
+        ),
       ),
     );
   }
