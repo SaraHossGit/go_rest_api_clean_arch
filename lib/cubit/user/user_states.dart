@@ -13,3 +13,8 @@ class SingleUserLoaded extends UserStates{
   final User user;
   SingleUserLoaded (this.user);
 }
+
+class UserCreated extends UserStates{
+  final User user;
+  UserCreated (this.user);
+}

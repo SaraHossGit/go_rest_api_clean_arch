@@ -12,10 +12,16 @@ class UsersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<User> usersList = [];
     User user;
+    User user2= User(
+      name: "Sara",
+      email: "SaraHoss@gmail.com",
+      gender: "female",
+      status: "active"
+    );
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => getIt<UserCubit>()..getSingleUser(userId: 6925955),
+          create: (context) => getIt<UserCubit>()..createUser(user: user2),
           child: BlocConsumer<UserCubit, UserStates>(
               listener: (context, state) {},
               builder: (context, state) {
@@ -32,7 +38,11 @@ class UsersScreen extends StatelessWidget {
                   user = state.user;
                   return Text(user.name.toString());
                 }
-                return const SizedBox();
+                else if (state is UserCreated) {
+                  user = state.user;
+                  return Text(user.name.toString());
+                }
+                return const CircularProgressIndicator();
               }),
         ),
       ),

@@ -15,4 +15,9 @@ class UserRepo{
     return response;
   }
 
+  Future<User> createUser({required Map<String,dynamic> userData}) async {
+    final response= await webServices.createUser(userData);
+    return response;
+  }
+
 }

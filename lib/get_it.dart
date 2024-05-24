@@ -46,5 +46,13 @@ Dio createAndSetupDio() {
     requestBody: true,
   ));
 
+  dio.interceptors.add(InterceptorsWrapper(
+    onRequest: (options, handler) {
+      // Add your static headers here
+      options.headers['Authorization'] = 'Bearer 26efee9d0a8345a05b1047f20d1ba49b897364f037ede22611357091ab5eacd2';
+      options.headers['Content-Type'] = 'application/json';
+      return handler.next(options);
+    },
+  ));
   return dio;
 }
